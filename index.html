@@ -1,1 +1,138 @@
+<!doctype html>
+<html lang="es">
 
+<head>
+ <meta charset="UTF-8">
+ <title>Flexbox Navigation Demo</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+ <link rel="stylesheet" href="presentation.css" />
+	<link rel="stylesheet" href="main.css"/>
+</head>
+
+<body>
+
+ <!-- nav -->
+	<nav class="navigation">
+		<a href="#">Home</a>
+		<a href="#">About</a>
+		<a href="#">Products</a>
+		<a href="#">Contact</a>
+	</nav>
+
+ <section>
+  <h1>Flexbox Navigation Demo</h1>
+  <article>
+   <header>Estructura HTML</header>
+   <p>Cómo lo voy a resolver?</p>
+   <p>CanIuse? Flexbox, alcance, soporte... etc.
+    <br>Elementos nav.navigation con 4 links: Home | About | Products | Contact
+    <br>ModerIE <a href="https://www.modern.ie/en-us/performance/how-to-use-x-ua-compatible">IE edge</a> 
+    <br>CSS main.css
+   </p>
+  </article>
+ </section>
+
+ <section>
+  <article>
+   <header>Estilos por Defecto</header>
+   <p>Mini-reset:
+    <br>.navigation le ponemos: margin y padding en 0, list-style en none y un color de fondo (deepskyblue);
+    <br>
+   </p>
+   <p>Display: Flex
+    <br>Explicación... display flex al Parent, puede tener propiedades como lo son:
+    <br>flex-direction + flex-wrap : flex-flow
+    <br>justify-content, align-items, align-content
+    <br>Y las propiedades de los Children:
+    <br>order, align-self
+    <br>flex-grow + flex-shrink + flex-basis: flex
+   </p>
+   <p>A la .navigation:
+    <br>Para MS syntaxis viejo (display: -ms-Flexbox; -ms-box-orient: horizontal;)
+    <br>Luego display: --flex y --flex-flow: column wrap; Con los prefixes donde van los --
+   </p>
+  </article>
+ </section>
+
+ <section>
+  <article>
+   <header>Links de la Navegación, por Defecto</header>
+   <p>Text decoration en none, block, text align center, padding 0.8rem, color blanco
+    <br>Bordes: top 1px solid blanco 0.3 alpha y el bottom 1px solid negro 0.1 alpha;
+    <br>
+   </p>
+   <p>En el hover: color de fondo(dodgerblue);
+    <br>Y vamos a usar un selector, en el .navigation a:last-of-type border bottom none;
+   </p>
+  </article>
+ </section>
+
+
+ <section>
+  <article>
+   <header>Breakpoints</header>
+   <p>Entendiendo la Fórmula de medidas en Rem: Medidas relativas como los %, em y rem etc. Parent > % el Parent.fontSize > em pero Parent.rootFontSize > Rem
+    <br>rootFontSize 16px = 1rem;
+    <br>Rem = px/16;
+    <br>
+   </p>
+   <p>Primer breakpoint 600px más o menos
+    <br>mobile First: @media all and (min-width: 600px) pero yo quiero rem no px 600/16 = 37.5rem
+    <br>Media queries, algo así como if (true) ahora use esto; else stick with the plan;
+    <br>
+    <span class="green">IF TRUE</span> 
+    <br>Aplique esto al .navigation : flex-flow: row wrap; con los prefixes, Opera no necesita
+    <br>Y justify-content: space-around; con los prefixes menos el de webkit* después vamos a ver porqué...
+   </p>
+  </article>
+ </section>
+
+ <section>
+  <article>
+   <header>Segundo Breakpoint</header>
+   <p>@media all and (min-width: 50rem) (800px) más o menos
+    <br>Aplique esto al .navigation:
+    <br>justify-content: flex-end; con los prefixes menos el de webkit</p>
+   <p>
+    <strong>Problema con Webkit, última versión</strong> osea, Chrome. Opera, Safari en Windows, Mac, Android, iOS, caos mundial...
+    <br>Posiblemente no sobreescribe la propiedad justify-content, o la sobreescribe pero falla en renderizar el valor anterior
+    <br>causando resultados inesperados
+    <img src="chromeBug1.png" alt="screenshot de un bug en Chrome version 40 con justify content en flexbox">
+    <img src="chromeBug2.png" alt="screenshot de un bug en Chrome version 40 con justify content en flexbox">
+   </p>
+   <p>
+    Comentario que yo puse : /*bug Chrome 40, target breakpoint and apply flex-end*/
+    <br>/*If Webkit, Expected: space-around not flex-end*/
+   </p>
+   <p>De último, después del soporte nativo, agregar -webkit-justify-content: space-around;
+   </p>
+  </article>
+ </section>
+
+ <section>
+  <article>
+   <header>Tener en cuenta:</header>
+   <p>
+    El propósito del tutorial es un Flex Demo, se requiere profundizar más
+    <br>Retina display vs Breakpoints actuales
+    <br>IE 8 y 9, Modernizr.js, HTML5 Boiler Plate, html5shiv
+    <br>
+   </p>
+  </article>
+ </section>
+
+ <footer>
+  Recursos Adicionales, muchos pero los mejores (para mi):
+  <ul>
+   <li>MDN Mozilla Developer Network</li>
+   <li>https://dev.opera.com/articles/advanced-cross-browser-flexbox/</li>
+   <li>http://css-tricks.com/snippets/css/a-guide-to-flexbox/</li>
+  </ul>
+		
+		<p>Preguntas, por FB o Twitter o como sea, con gusto <a href="https://www.facebook.com/JorgeKchetes" target="_blank">Facebook</a>
+		O en <a href="https://twitter.com/JorgeKchetes" target="_blank">Twitter</a></p>
+ </footer>
+
+</body>
+
+</html>
